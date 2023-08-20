@@ -9,16 +9,7 @@ locals {
   intra_subnet_cidrs   = ["${local.cidr_prefix}.172.0/24", "${local.cidr_prefix}.173.0/24", "${local.cidr_prefix}.174.0/24"]
   public_subnet_cidrs  = ["${local.cidr_prefix}.181.0/24", "${local.cidr_prefix}.182.0/24", "${local.cidr_prefix}.183.0/24"]
 
-  team         = "devops"
   project_name = "cluster-network"
-
-  aws_network_resources = var.cloud == "aws" ? toset(
-    concat(
-      [for resource in module.vpc.database_subnet_arns : resource],
-      [for resource in module.vpc.private_subnet_arns : resource],
-      [for resource in module.vpc.public_subnet_arns : resource]
-    )
-  ) : null
 
   tags = {
     Cluster          = local.full_cluster_name
