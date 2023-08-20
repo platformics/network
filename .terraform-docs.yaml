@@ -23,7 +23,31 @@ content: |-
 
   Create a network to be used by cluster and create a cluster name to be consumed for other projects.
 
-  Create a folder network/region_name/environment.
+  Create a folder network/region_name/environment. (optional)
+
+  Example main.tf
+  ```
+  terraform {
+    required_providers {
+      aws = {
+        source  = "hashicorp/aws"
+        version = "~> 5.0"
+      }
+    }
+
+    required_version = "~> 1.5"
+  }
+
+  provider "aws" {
+    region = "us-west-2"
+  }
+
+  module "network" {
+  source = "git::https://github.com/platformics/network.git"
+  cloud  = "aws"
+  region = "us-west-2"
+  }
+  ```
 
   ## Create Documentation
 

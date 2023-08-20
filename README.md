@@ -4,7 +4,31 @@
 
 Create a network to be used by cluster and create a cluster name to be consumed for other projects.
 
-Create a folder network/region_name/environment.
+Create a folder network/region_name/environment. (optional)
+
+Example main.tf
+```
+terraform {
+required_providers {
+aws = {
+source  = "hashicorp/aws"
+version = "~> 5.0"
+}
+}
+
+required_version = "~> 1.5"
+}
+
+provider "aws" {
+region = "us-west-2"
+}
+
+module "network" {
+source = "git::https://github.com/platformics/network.git"
+cloud  = "aws"
+region = "us-west-2"
+}
+```
 
 ## Create Documentation
 
@@ -55,7 +79,6 @@ No resources.
 | Name | Description |
 |------|-------------|
 | <a name="output_aws_azs"></a> [aws\_azs](#output\_aws\_azs) | list of azs of the network |
-| <a name="output_aws_full_cluster_name"></a> [aws\_full\_cluster\_name](#output\_aws\_full\_cluster\_name) | Name of cluster tagged to subnets |
 | <a name="output_aws_intra_route_table_ids"></a> [aws\_intra\_route\_table\_ids](#output\_aws\_intra\_route\_table\_ids) | ids of the route tables from intra subnet |
 | <a name="output_aws_intra_subnet_arns"></a> [aws\_intra\_subnet\_arns](#output\_aws\_intra\_subnet\_arns) | arn of the intra subnets |
 | <a name="output_aws_intra_subnet_ids"></a> [aws\_intra\_subnet\_ids](#output\_aws\_intra\_subnet\_ids) | IDs of the intra subnets |
@@ -72,6 +95,7 @@ No resources.
 | <a name="output_aws_vpc_arn"></a> [aws\_vpc\_arn](#output\_aws\_vpc\_arn) | arn of the vpc |
 | <a name="output_aws_vpc_cidr_block"></a> [aws\_vpc\_cidr\_block](#output\_aws\_vpc\_cidr\_block) | CIDR block of the vpc |
 | <a name="output_aws_vpc_id"></a> [aws\_vpc\_id](#output\_aws\_vpc\_id) | ID of the vpc |
+| <a name="output_full_cluster_name"></a> [full\_cluster\_name](#output\_full\_cluster\_name) | Name of cluster tagged to subnets |
 
 
 
