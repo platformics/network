@@ -84,7 +84,7 @@ output "aws_nat_public_ips" {
 }
 
 
-output "aws_full_cluster_name" {
+output "full_cluster_name" {
   description = "Name of cluster tagged to subnets"
   value       = local.full_cluster_name
 }
